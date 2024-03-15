@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>URL Shortener</title>
+    </head>
+    <body>
+        <center>
+            <h1>
+                Enter URL below to add it to the list
+            </h1>
+            <input id="input" type="text">
+            <button onclick="addURL()">Add URL</button>
+        </center>
+        <script>
+            async function addURL(){
+            var urltoadd = document.getElementById("input").value;
+            var endpoint = "http://localhost:8000/api/addurl";
+            var res = await fetch(endpoint, {method: "POST", cors: "no-cors", headers:{"url": urltoadd}});
+            ID = await res.text();
+            console.log(ID);
+            alert("YOUR SHORT URL IS:\nhttp://localhost:8000/?"+ID);
+            }
+        </script>
+    </body>
+</html>
